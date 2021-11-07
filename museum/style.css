@@ -958,9 +958,32 @@ input[type="number"]::-webkit-outer-spin-button,
   letter-spacing: 1.65px;
 }
 
-.booking_tickets {
+.overlay {
   /* position: fixed; */
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: var(--black);
+  opacity: 0.4;
+  z-index: 50;
+}
+
+.form-block {
+  /* position: fixed; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.booking_tickets {
   padding: 91px 235px;
+  background-color: var(--white);
 }
 
 .golden_logo {
@@ -1052,11 +1075,6 @@ input[type="number"]::-webkit-outer-spin-button,
   content: "";
 }
 
-
-
-
-
-
 .user_info {
   display: flex;
   flex-direction: column;
@@ -1120,6 +1138,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 }
 
 .user_info select {
+  width: 100%;
   padding-left: 40px;
   padding-top: 1px;
 }
@@ -1144,13 +1163,71 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   background: url(./assets/svg/tel.svg) no-repeat 14px center;
 }
 
-.booking_tickets_form select {
+.select_type {
   background: url(./assets/svg/ballot.svg) no-repeat 14px center;
+  appearance: none;
+}
+
+
+
+.select_visibility {
+  display: none;
 }
 
 .select_list {
-  /* padding: 12px 43px; */
+  position: relative;
+  padding: 12px 0px 12px 43px;
   height: 45px;
+  box-sizing: border-box;
+  font-family: var(--roboto);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--dark);
+}
+
+.block_select {
+  position: relative;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.block_select ul {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  border: 1px solid var(--dark);
+  border-top: none;
+}
+
+.block_select ul {
+  display: none;
+}
+
+.block_select li {
+  position: relative;
+  background-color: var(--white);
+  list-style: none;
+  cursor: pointer;
+}
+
+div.select_list {
+  border: 1px solid var(--dark);
+}
+
+.block_select li:hover {
+  background-color: #E7E7E7;
+}
+
+.select_arrow_button {
+  position: absolute;
+  width: 17px;
+  height: 17px;
+  z-index: 3;
+  right: 14px;
+  top: 14px;
+  background: url(./assets/png/booking-arrow.png) no-repeat;
+  cursor: pointer;
 }
 
 .entry_ticket {
@@ -1242,8 +1319,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 .overview_image {
   position: absolute;
-  top: 24px;
-  right: 29px;
+  top: 0px;
+  right: 0px;
   width: 150px;
   height: 120px;
   background: url(./assets/png/tour_to_louvre.png) no-repeat;
@@ -1402,15 +1479,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   background-color: #161615;
 }
 
-.book_button {
-  position: absolute;
-  right: 29px;
-  bottom: 25px;
-  padding: 13px 85px 7px;
-  border: 0px;
-  background-color: var(--red);
-}
-
 .book_button_text {
   font-family: var(--roboto);
   font-weight: 400;
@@ -1418,6 +1486,53 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   line-height: 26px;
   color: var(--white);
 }
+
+
+
+
+.book_button {
+  position: absolute;
+  right: 29px;
+  bottom: 25px;
+  padding: 13px 85px 7px;
+  border: 0px;
+  overflow: hidden;
+  background-color: var(--red);
+  cursor: pointer;
+  z-index: 99;
+}
+
+.book_button:hover {
+  background-color: var(--gold);
+  color: var(--black);
+}
+
+button .circle {
+  position: absolute;
+  background-color: var(--white);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  animation: scale 0.5s ease-out;
+}
+
+@keyframes scale {
+  to {
+    transform: translate(-50%, -50%) scale(4);
+    opacity: 0;
+  }
+}
+
+
+
+
+
+
+
+
+
+
 
 .card_text {
   font-family: var(--roboto);
@@ -1493,9 +1608,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   margin-bottom: 0px;
 }
 
-
-
-
 .month, .year {
   position: relative;
   display: flex;
@@ -1512,23 +1624,12 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   background-color: #A4A4A3;
 }
 
-/* 
-.date_button {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  height: 36px;
-  top: 0;
-  left: 72px;
-} */
-
 .arrow-button {
   position: absolute;
   height: 18px;
   width: 28px;
   background-size: 4px 6px;
-  border: none;/* 
-  border-left: 0.5px solid #A4A4A3; */
+  border: none;
   background: url(./assets/svg/arrow_button.svg) no-repeat;
   background-position: 11px 13px;
   cursor: pointer;
@@ -1553,17 +1654,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   right: 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .card_front .visa_logo {
   position: absolute;
   height: 16px;
@@ -1581,8 +1671,6 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   right: 18px;
   background: url(./assets/svg/Mastercard.svg) no-repeat;
 }
-
-
 
 .map_block {
   margin-top: 28px;
